@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:website_portofolio/components/default_button.dart';
 import 'package:website_portofolio/components/my_outline_button.dart';
 import 'package:website_portofolio/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'components/about_section_text.dart';
 import 'components/about_text_with_sign.dart';
 import 'components/experience_card.dart';
+
+final Uri _resume = Uri.parse(
+    'https://rxresu.me/gopalkumargupta337/imported-from-reactive-resume-30032023163953');
+final Uri _mail = Uri.parse('mailto:gopal.kmr@yahoo.com');
 
 class AboutSection extends StatelessWidget {
   @override
@@ -41,18 +46,24 @@ class AboutSection extends StatelessWidget {
               MyOutlineButton(
                 imageSrc: "assets/images/hand.png",
                 text: "Hire Me!",
-                press: () {},
+                press: () => _launchUrl(_mail),
               ),
               SizedBox(width: kDefaultPadding * 1.5),
               DefaultButton(
                 imageSrc: "assets/images/download.png",
                 text: "Download CV",
-                press: () {},
+                press: () => _launchUrl(_resume),
               ),
             ],
           ),
         ],
       ),
     );
+  }
+}
+
+Future<void> _launchUrl(@required _url) async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
