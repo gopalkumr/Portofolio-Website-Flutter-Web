@@ -4,6 +4,7 @@ import 'package:website_portofolio/home_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:website_portofolio/home_screen_phone.dart';
 
 final Uri _othersite = Uri.parse('https://projectwithgopal.vercel.app');
 
@@ -34,8 +35,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
       // Redirect to a mobile webpage
-      _launchUrl(_othersite);
-      return Container(); // Return an empty container as the widget tree needs to return a widget
+      // _launchUrl(_othersite); not working
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Portofolio',
+        theme: ThemeData(
+          inputDecorationTheme: kDefaultInputDecorationTheme,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Homescreenphone(),
+      );
+
+      //return Container(); // Return an empty container as the widget tree needs to return a widget
     } else {
       // Use the default desktop layout
       return MaterialApp(
@@ -47,6 +58,7 @@ class MyApp extends StatelessWidget {
         ),
         home: HomeScreen(),
       );
+      print('Running in the web');
     }
   }
 
