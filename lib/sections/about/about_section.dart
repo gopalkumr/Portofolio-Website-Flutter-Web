@@ -27,14 +27,14 @@ class AboutSection extends StatelessWidget {
               Expanded(
                 child: AboutSectionText(
                   text:
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                      "I'm Second year Student persuing Bachlor of Technology in The field of Information Technology",
                 ),
               ),
               ExperienceCard(numOfExp: "08"),
               Expanded(
                 child: AboutSectionText(
                   text:
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                      "Handeling Multiple Projects in our university and also working on some personal projects",
                 ),
               ),
             ],
@@ -45,7 +45,7 @@ class AboutSection extends StatelessWidget {
             children: [
               MyOutlineButton(
                 imageSrc: "assets/images/hand.png",
-                text: "Hire Me!",
+                text: "Contact Me",
                 press: () => _launchUrl(_mail),
               ),
               SizedBox(width: kDefaultPadding * 1.5),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
 import 'default_button.dart';
+
+final Uri _mail = Uri.parse('mailto:gopal.kmr@yahoo.com');
 
 class HireMeCard extends StatelessWidget {
   const HireMeCard({
@@ -49,12 +52,18 @@ class HireMeCard extends StatelessWidget {
             ),
           ),
           DefaultButton(
-            text: "Hire Me!",
+            text: "Contact me!",
             imageSrc: "assets/images/hand.png",
-            press: () {},
+            press: () => _launchUrl(_mail),
           )
         ],
       ),
     );
+  }
+}
+
+Future<void> _launchUrl(@required _url) async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }

@@ -36,7 +36,7 @@ class GlassContent extends StatelessWidget {
                     .copyWith(color: Colors.white),
               ),
               Text(
-                "Gopal \nKumar",
+                "Gopal\nKumar",
                 style: TextStyle(
                   fontSize: 100,
                   fontWeight: FontWeight.bold,
