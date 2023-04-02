@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:website_portofolio/components/default_button.dart';
 import 'package:website_portofolio/components/section_title.dart';
 import 'package:website_portofolio/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'components/socal_card.dart';
+
+final Uri _mail = Uri.parse('mailto:gopal.kmr@yahoo.com');
 
 class ContactSection extends StatelessWidget {
   @override
@@ -154,12 +157,18 @@ class ContactForm extends StatelessWidget {
               child: DefaultButton(
                 imageSrc: "assets/images/contact_icon.png",
                 text: "Contact Me!",
-                press: () {},
+                press: () => _launchUrl(_mail),
               ),
             ),
           )
         ],
       ),
     );
+  }
+}
+
+Future<void> _launchUrl(_url) async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
