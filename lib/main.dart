@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:website_portofolio/constants.dart';
 import 'package:website_portofolio/home_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:website_portofolio/home_screen_phone.dart';
+//import 'package:url_launcher/url_launcher.dart';
+//import 'dart:io' show Platform;
+//import 'package:flutter/foundation.dart' show kIsWeb;
+//import 'package:website_portofolio/home_screen_phone.dart';
+import 'dart:html' as html;
 
-final Uri _othersite = Uri.parse('https://projectwithgopal.vercel.app');
+//final Uri _othersite = Uri.parse('https://projectwithgopal.vercel.app');
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
   }
 }
 */
+
+/*
 
 class MyApp extends StatelessWidget {
   @override
@@ -66,5 +69,48 @@ class MyApp extends StatelessWidget {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
     }
+  }
+}
+
+*/
+
+int? screenWidth = html.window.innerWidth;
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyApp createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  String _redirectUrl = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _checkForMobile();
+  }
+
+  void _checkForMobile() {
+    if (screenWidth != null && screenWidth! < 600) {
+      // Change 600 to a different value to adjust the screen width at which you want to redirect users to the mobile URL
+      setState(() {
+        _redirectUrl =
+            'https://projectwithgopal.vercel.app/'; // Replace this with the URL you want to redirect users to when they are using a mobile browser
+      });
+      html.window.location.href = _redirectUrl;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Portofolio',
+      theme: ThemeData(
+        inputDecorationTheme: kDefaultInputDecorationTheme,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomeScreen(),
+    );
   }
 }
